@@ -1,4 +1,4 @@
-package com.project.CheapCheese.models;
+package com.project.CheapCheese;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
