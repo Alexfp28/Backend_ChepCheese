@@ -1,5 +1,9 @@
 package com.project.CheapCheese.exceptions;
 
+import com.project.CheapCheese.exceptions.created.EmailDuplicatedException;
+import com.project.CheapCheese.exceptions.created.IncorrectCredentialsException;
+import com.project.CheapCheese.exceptions.created.InvalidCredentialsException;
+import com.project.CheapCheese.exceptions.created.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,6 +24,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(InvalidCredentialsException.class)
     public ResponseEntity<String> handleInvalidCredentialsException(InvalidCredentialsException user) {
+        return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(user.getMessage());
+    }
+
+    @ExceptionHandler(EmailDuplicatedException.class)
+    public ResponseEntity<String> handleEmailDuplicatedException(EmailDuplicatedException user) {
         return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(user.getMessage());
     }
 }
