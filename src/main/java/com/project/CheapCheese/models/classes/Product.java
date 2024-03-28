@@ -21,9 +21,6 @@ public class Product {
     private String tipo;
     private String tienda;
 
-    public Product() {
-    }
-
     public Product( String nombre, String imagen, double precio, String tipo, String tienda) {
         this.nombre = nombre;
         this.imagen = imagen;

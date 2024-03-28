@@ -15,9 +15,6 @@ public class Supermarket {
     private String imagen;
     private String descripcion;
 
-    public Supermarket() {
-    }
-
     public Supermarket( String nombre, String imagen, String descripcion) {
         this.nombre = nombre;
         this.imagen = imagen;
