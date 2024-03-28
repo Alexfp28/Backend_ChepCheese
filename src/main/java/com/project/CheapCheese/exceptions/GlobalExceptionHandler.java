@@ -17,4 +17,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleIncorrectCredentialsException(IncorrectCredentialsException user) {
         return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(user.getMessage());
     }
+
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<String> handleInvalidCredentialsException(InvalidCredentialsException user) {
+        return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(user.getMessage());
+    }
 }
