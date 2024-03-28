@@ -15,6 +15,7 @@ public class Product {
 
     @Id
     private BigInteger _id;
+
     private String nombre;
     private String imagen;
     private double precio;
