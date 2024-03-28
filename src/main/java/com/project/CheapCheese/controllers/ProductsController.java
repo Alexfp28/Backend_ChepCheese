@@ -21,11 +21,13 @@ import java.util.List;
 public class ProductsController {
 
     private final ProductService service;
+
     @GetMapping
     public List<Product> takeAllProducts() {
         return service.AllProducts();
     }
 
+    // Exporta el .xlsx para que puedas tenerlo en tu equipo y realizar el análisis de datos que tu prefieras.
     @GetMapping("/export-excel")
     public void exportIntoExcelFile(HttpServletResponse response) throws IOException {
         response.setContentType("application/octet-stream");
@@ -33,11 +35,11 @@ public class ProductsController {
         String currentDateTime = dateFormatter.format(new Date());
 
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=Products " + currentDateTime + ".xlsx";
+        String headerValue = "attachment; filename=Products_" + currentDateTime + ".xlsx";
         response.setHeader(headerKey, headerValue);
 
-        List <Product> listOfStudents = service.AllProducts();
-        ExcelGenerator generator = new ExcelGenerator(listOfStudents);
+        List<Product> listOfProducts = service.AllProducts();
+        ExcelGenerator generator = new ExcelGenerator(listOfProducts);
         generator.generateExcelFile(response);
     }
 }

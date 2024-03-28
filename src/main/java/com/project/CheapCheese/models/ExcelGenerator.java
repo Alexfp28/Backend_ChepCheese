@@ -14,6 +14,12 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+/*
+*   TODA LA CLASE INTRODUCIDA AQUÍ ES BUSCADA A TRAVÉS DE INTERNET, QUEDA EN CONCIENCIA QUE NO HE TRABAJADO MUCHO CON
+*   EXTRACIONES DE DATOS DE UNA BASE DE DATOS, ENTONCES HE RECURRIDO A BUSCAR INFORMACIÓN SOBRE ESTO.
+*   LIBRERIAS ENCAGADAS EN EL ARCHIVO POM.XML
+*/
+
 public class ExcelGenerator {
 
     private List < Product > productList;
@@ -25,7 +31,7 @@ public class ExcelGenerator {
         workbook = new XSSFWorkbook();
     }
     private void writeHeader() {
-        sheet = workbook.createSheet("Product");
+        sheet = workbook.createSheet("Products");
         Row row = sheet.createRow(0);
         CellStyle style = workbook.createCellStyle();
         XSSFFont font = workbook.createFont();
