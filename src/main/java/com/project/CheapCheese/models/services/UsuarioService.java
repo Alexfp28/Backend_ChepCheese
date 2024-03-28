@@ -5,6 +5,8 @@ import com.project.CheapCheese.exceptions.UserNotFoundException;
 import com.project.CheapCheese.models.classes.User;
 import com.project.CheapCheese.models.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,13 +15,18 @@ import java.util.List;
 public class UsuarioService {
 
     @Autowired
-    public UserRepository repository;
+    private UserRepository repository;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     public User registrarUsuario(User user) {
 
         if (user == null) {
             throw new UserNotFoundException("USUARIO SIN INFORMACIÓN!!!");
         }
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
        return repository.save(user);
     }
@@ -35,7 +42,7 @@ public class UsuarioService {
             throw new IncorrectCredentialsException("CORREO INCORRECTO, PRUEBA CON OTRO!!");
         }
 
-        if (!usuario.getPassword().equals(password)) {
+        if (!passwordEncoder.matches(password, usuario.getPassword())) {
             throw new IncorrectCredentialsException("CONTRASEÑA INCORRECTA, PRUEBA CON OTRA!!");
         }
 
