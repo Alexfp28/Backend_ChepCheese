@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "nombre": "Carrefour",
+    "imagen": "https://www.shutterstock.com/image-vector/c-icon-vector-logo-sign-600nw-2242697067.jpg",
+    "descripcion": " Fundada en 1959 por Marcel Fournier, Denis Defforey y Jacques Defforey en Francia, Carrefour ha experimentado un crecimiento significativo a lo largo de los años, expandiéndose tanto geográfica como en términos de diversidad de productos y servicios."
+  },
+  {
+    "id": 2,
+    "nombre": "Consum",
+    "imagen": "https://sf.ezoiccdn.com/ezoimgfmt/www.vectorlogo.es/wp-content/uploads/2015/10/logo-vector-consum.jpg",
+    "descripcion": " Consum es una cadena de supermercados presente principalmente en la Comunidad Valenciana, España. Reconocida por su compromiso con la calidad, variedad y frescura de sus productos, Consum ofrece una amplia gama de alimentos y productos de consumo diario. "
+  },
+  {
+    "id": 3,
+    "nombre": "Dia",
+    "imagen": "https://sf.ezoiccdn.com/ezoimgfmt/www.vectorlogo.es/wp-content/uploads/2015/09/logo-vector_supermercados-dia.jpg",
+    "descripcion": " DIA es una cadena internacional de supermercados de descuento que se fundó en España en 1979. Se ha expandido rápidamente y ahora opera en varios países, principalmente en Europa y América Latina."
+  }
+]
