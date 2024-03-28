@@ -1,7 +1,6 @@
-package com.project.CheapCheese.models;
+package com.project.CheapCheese.models.generators;
 
 import java.io.IOException;
-import java.math.BigInteger;
 import java.util.List;
 
 import com.project.CheapCheese.models.classes.Product;
@@ -15,21 +14,22 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /*
-*   TODA LA CLASE INTRODUCIDA AQUÍ ES BUSCADA A TRAVÉS DE INTERNET, QUEDA EN CONCIENCIA QUE NO HE TRABAJADO MUCHO CON
-*   EXTRACIONES DE DATOS DE UNA BASE DE DATOS, ENTONCES HE RECURRIDO A BUSCAR INFORMACIÓN SOBRE ESTO.
-*   LIBRERIAS ENCAGADAS EN EL ARCHIVO POM.XML
-*/
+ *   TODA LA CLASE INTRODUCIDA AQUÍ ES BUSCADA A TRAVÉS DE INTERNET, QUEDA EN CONCIENCIA QUE NO HE TRABAJADO MUCHO CON
+ *   EXTRACIONES DE DATOS DE UNA BASE DE DATOS, ENTONCES HE RECURRIDO A BUSCAR INFORMACIÓN SOBRE ESTO.
+ *   LIBRERIAS ENCAGADAS EN EL ARCHIVO POM.XML
+ */
 
-public class ExcelGenerator {
+public class GeneralExcelGenerator {
 
-    private List < Product > productList;
+    private List<Product> productList;
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
 
-    public ExcelGenerator(List < Product > productList) {
+    public GeneralExcelGenerator(List<Product> productList) {
         this.productList = productList;
         workbook = new XSSFWorkbook();
     }
+
     private void writeHeader() {
         sheet = workbook.createSheet("Products");
         Row row = sheet.createRow(0);
@@ -44,6 +44,7 @@ public class ExcelGenerator {
         createCell(row, 4, "Tipo", style);
         createCell(row, 5, "Tienda", style);
     }
+
     private void createCell(Row row, int columnCount, Object valueOfCell, CellStyle style) {
         sheet.autoSizeColumn(columnCount);
         Cell cell = row.createCell(columnCount);
@@ -55,19 +56,20 @@ public class ExcelGenerator {
             cell.setCellValue((String) valueOfCell);
         } else if (valueOfCell instanceof Double) {
             cell.setCellValue((Double) valueOfCell);
-        }  else {
+        } else {
             cell.setCellValue((Boolean) valueOfCell);
         }
         cell.setCellStyle(style);
     }
+
     private void write() {
         int rowCount = 1;
-        int identificador = 1 ;
+        int identificador = 1;
         CellStyle style = workbook.createCellStyle();
         XSSFFont font = workbook.createFont();
         font.setFontHeight(14);
         style.setFont(font);
-        for (Product record: productList) {
+        for (Product record : productList) {
             Row row = sheet.createRow(rowCount++);
             int columnCount = 0;
             createCell(row, columnCount++, identificador++, style);
@@ -77,6 +79,7 @@ public class ExcelGenerator {
             createCell(row, columnCount++, record.getTienda(), style);
         }
     }
+
     public void generateExcelFile(HttpServletResponse response) throws IOException {
         writeHeader();
         write();

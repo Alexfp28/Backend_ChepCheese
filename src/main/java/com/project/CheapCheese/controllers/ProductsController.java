@@ -1,6 +1,7 @@
 package com.project.CheapCheese.controllers;
 
-import com.project.CheapCheese.models.ExcelGenerator;
+import com.project.CheapCheese.models.generators.EspecificExcelGenerator;
+import com.project.CheapCheese.models.generators.GeneralExcelGenerator;
 import com.project.CheapCheese.models.classes.Product;
 import com.project.CheapCheese.models.services.ProductService;
 import jakarta.servlet.http.HttpServletResponse;
@@ -39,7 +40,22 @@ public class ProductsController {
         response.setHeader(headerKey, headerValue);
 
         List<Product> listOfProducts = service.AllProducts();
-        ExcelGenerator generator = new ExcelGenerator(listOfProducts);
+        GeneralExcelGenerator generator = new GeneralExcelGenerator(listOfProducts);
+        generator.generateExcelFile(response);
+    }
+
+    @GetMapping("/excel")
+    public void exportIntoExcelEspecificFile(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=Products_" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<Product> listOfProducts = service.AllProducts();
+        EspecificExcelGenerator generator = new EspecificExcelGenerator(listOfProducts);
         generator.generateExcelFile(response);
     }
 }
