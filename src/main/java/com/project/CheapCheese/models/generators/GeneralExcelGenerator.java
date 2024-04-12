@@ -1,17 +1,14 @@
 package com.project.CheapCheese.models.generators;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.project.CheapCheese.models.classes.Product;
-import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.IOException;
+import java.util.List;
 
 /*
  *   TODA LA CLASE INTRODUCIDA AQUÍ ES BUSCADA A TRAVÉS DE INTERNET, QUEDA EN CONCIENCIA QUE NO HE TRABAJADO MUCHO CON
@@ -32,9 +29,11 @@ public class GeneralExcelGenerator {
 
     private void writeHeader() {
         sheet = workbook.createSheet("Products");
-        Row row = sheet.createRow(0);
-        CellStyle style = workbook.createCellStyle();
-        XSSFFont font = workbook.createFont();
+
+        var row = sheet.createRow(0);
+        var style = workbook.createCellStyle();
+        var font = workbook.createFont();
+
         font.setBold(true);
         font.setFontHeight(16);
         style.setFont(font);
@@ -47,7 +46,8 @@ public class GeneralExcelGenerator {
 
     private void createCell(Row row, int columnCount, Object valueOfCell, CellStyle style) {
         sheet.autoSizeColumn(columnCount);
-        Cell cell = row.createCell(columnCount);
+
+        var cell = row.createCell(columnCount);
         if (valueOfCell instanceof Integer) {
             cell.setCellValue((Integer) valueOfCell);
         } else if (valueOfCell instanceof Long) {
@@ -63,10 +63,11 @@ public class GeneralExcelGenerator {
     }
 
     private void write() {
-        int rowCount = 1;
-        int identificador = 1;
-        CellStyle style = workbook.createCellStyle();
-        XSSFFont font = workbook.createFont();
+        var rowCount = 1;
+        var identificador = 1;
+        var style = workbook.createCellStyle();
+        var font = workbook.createFont();
+
         font.setFontHeight(14);
         style.setFont(font);
         for (Product record : productList) {
@@ -83,7 +84,8 @@ public class GeneralExcelGenerator {
     public void generateExcelFile(HttpServletResponse response) throws IOException {
         writeHeader();
         write();
-        ServletOutputStream outputStream = response.getOutputStream();
+
+        var outputStream = response.getOutputStream();
         workbook.write(outputStream);
         workbook.close();
         outputStream.close();

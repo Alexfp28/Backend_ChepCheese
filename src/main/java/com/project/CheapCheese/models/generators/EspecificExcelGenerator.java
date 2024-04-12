@@ -34,9 +34,11 @@ public class EspecificExcelGenerator {
 
     private void writeHeader() {
         sheet = workbook.createSheet("Products");
-        Row row = sheet.createRow(0);
-        CellStyle style = workbook.createCellStyle();
-        Font font = workbook.createFont();
+
+        var row = sheet.createRow(0);
+        var style = workbook.createCellStyle();
+        var font = workbook.createFont();
+
         font.setBold(true);
         font.setFontHeightInPoints((short) 16);
         style.setFont(font);
@@ -47,7 +49,7 @@ public class EspecificExcelGenerator {
     private void createCell(Row row, int columnCount, Object value, CellStyle style) {
         sheet.autoSizeColumn(columnCount);
 
-        Cell cell = row.createCell(columnCount);
+        var cell = row.createCell(columnCount);
 
         if (value instanceof Integer) {
             cell.setCellValue((Integer) value);
@@ -68,7 +70,7 @@ public class EspecificExcelGenerator {
     }
 
     private void writeData() {
-        Map<String, Double> maxPricesByType = new HashMap<>();
+        var maxPricesByType = new HashMap<String, Double>();
 
         // Calcular el precio máximo para cada tipo
         for (Product product : productList) {
@@ -119,7 +121,7 @@ public class EspecificExcelGenerator {
         writeData();
         addChart();
 
-        ServletOutputStream outputStream = response.getOutputStream();
+        var outputStream = response.getOutputStream();
         workbook.write(outputStream);
         workbook.close();
         outputStream.close();

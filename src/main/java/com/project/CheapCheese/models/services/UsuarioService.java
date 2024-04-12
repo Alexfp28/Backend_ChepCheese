@@ -26,9 +26,9 @@ public class UsuarioService {
 
     public User registrarUsuario(User user) {
 
-        User existent = repository.findUserByEmail(user.getEmail());
-        String regex_password = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!])(?!.*\\s).{8,}$";
-        String regex_email = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        var existent = repository.findUserByEmail(user.getEmail());
+        var regex_password = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!])(?!.*\\s).{8,}$";
+        var regex_email = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
 
         // Si el email introducido es el mismo que tiene algún usuario explota.
         if (existent != null) {
@@ -63,7 +63,7 @@ public class UsuarioService {
 
     // Verifica todas las credenciales para saber si el usuario es el correcto
     public User verificarCredenciales(String email, String password) {
-        User usuario = repository.findUserByEmail(email);
+        var usuario = repository.findUserByEmail(email);
 
 
         // Si el correo es incorrecto (no concuerda con un usuario) el usuario siempre aparecerá como null
