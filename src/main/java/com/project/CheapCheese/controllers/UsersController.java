@@ -1,9 +1,9 @@
 package com.project.CheapCheese.controllers;
 
 import com.project.CheapCheese.models.classes.User;
-import com.project.CheapCheese.models.services.UsuarioService;
+import com.project.CheapCheese.services.UsuarioService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 public class UsersController {
 
-    @Autowired
     private final UsuarioService service;
 
     @PostMapping("/register")
@@ -22,15 +21,13 @@ public class UsersController {
     }
 
     @PostMapping("/login")
-    public User loginUser(@RequestParam String email, @RequestParam String password) {
-        return service.verificarCredenciales(email, password);
+    public ResponseEntity<?> loginUser(@RequestBody User user) {
+       return service.login(user.getEmail(), user.getPassword());
     }
 
     @GetMapping
     public List<User> takeAllUsers() {
         return service.AllUsers();
     }
-
-
 
 }

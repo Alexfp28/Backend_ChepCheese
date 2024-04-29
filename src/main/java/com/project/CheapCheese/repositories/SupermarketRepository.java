@@ -1,4 +1,4 @@
-package com.project.CheapCheese.models.repositories;
+package com.project.CheapCheese.repositories;
 
 import com.project.CheapCheese.models.classes.Supermarket;
 import org.springframework.data.mongodb.repository.MongoRepository;

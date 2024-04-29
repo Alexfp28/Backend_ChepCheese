@@ -3,7 +3,7 @@ package com.project.CheapCheese.controllers;
 import com.project.CheapCheese.models.generators.EspecificExcelGenerator;
 import com.project.CheapCheese.models.generators.GeneralExcelGenerator;
 import com.project.CheapCheese.models.classes.Product;
-import com.project.CheapCheese.models.services.ProductService;
+import com.project.CheapCheese.services.ProductService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

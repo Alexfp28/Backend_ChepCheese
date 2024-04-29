@@ -1,7 +1,7 @@
-package com.project.CheapCheese.models.services;
+package com.project.CheapCheese.services;
 
 import com.project.CheapCheese.models.classes.Product;
-import com.project.CheapCheese.models.repositories.ProductRepository;
+import com.project.CheapCheese.repositories.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
