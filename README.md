@@ -1,8 +1,8 @@
 # Getting Started
-## Docker
-_Lo primero de todo es enchufar el archivo docker-compose.yaml_
+## Railway.App
+_Lo primero de todo es verificar si está enchufada la BBDD en la nube_ `railway.app`
 ## MongoDB Compass
-_Buscar en la aplicación de Mongo esta dirección:_ `mongodb://rootuser:rootpass@localhost:27017/`
+_Buscar en la aplicación de Mongo esta dirección:_ `mongodb://mongo:vtTQFhPqhgVxzhSAUUbLraYhgXRuhVBq@roundhouse.proxy.rlwy.net:31380`
 ## Backend
 _Por último enchufar el back y disfrutar del funcionamiento_
 
