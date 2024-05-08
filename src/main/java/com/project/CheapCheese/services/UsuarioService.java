@@ -80,7 +80,6 @@ public class UsuarioService {
         if (!passwordEncoder.matches(password, usuario.getPassword())) {
             throw new IncorrectCredentialsException("CONTRASEÑA INCORRECTA, PRUEBA CON OTRA!!");
         }
-
         return usuario;
     }
 
