@@ -1,5 +1,6 @@
 package com.project.CheapCheese.services;
 
+import com.project.CheapCheese.config.JWTUtil;
 import com.project.CheapCheese.exceptions.created.EmailDuplicatedException;
 import com.project.CheapCheese.exceptions.created.IncorrectCredentialsException;
 import com.project.CheapCheese.exceptions.created.InvalidCredentialsException;
@@ -25,7 +26,7 @@ public class UsuarioService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public User registrarUsuario(User user) {
+    public User registrarUsuario(User user, String token) {
 
         var existent = repository.findUserByEmail(user.getEmail());
         var regex_password = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!])(?!.*\\s).{8,}$";
@@ -54,7 +55,8 @@ public class UsuarioService {
             );
 
         } else {
-
+            // Asigna el token
+            user.setToken(token);
             // Encripta la contraseña
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
@@ -66,11 +68,13 @@ public class UsuarioService {
     public User verificarCredenciales(String email, String password) {
         var usuario = repository.findUserByEmail(email);
 
-
         // Si el correo es incorrecto (no concuerda con un usuario) el usuario siempre aparecerá como null
-        if (usuario == null) {
+        if (usuario == null)
             throw new UserNotFoundException("CORREO INCORRECTO, PRUEBA CON OTRO!!");
-        }
+
+        // TODO: AUN NO ESTÁ PROBADA
+        if (!JWTUtil.validateToken(usuario.getToken()))
+            throw new IncorrectCredentialsException("JWT Invalid");
 
         // Revisa si la contraseña encriptada (la desencripta primero) coincide con la contraseña introducida
         if (!passwordEncoder.matches(password, usuario.getPassword())) {
