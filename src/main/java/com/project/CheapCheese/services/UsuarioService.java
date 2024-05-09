@@ -84,12 +84,18 @@ public class UsuarioService {
     }
 
 
-    public ResponseEntity<?> login(String email, String password) {
-        User user = verificarCredenciales(email,password);
+    public ResponseEntity<?> login(User loginUser) {
+        User user = verificarCredenciales(loginUser.getEmail(),loginUser.getPassword());
         if (user != null) {
-            return ResponseEntity.ok("Login ha sido exitoso!" );
+            return ResponseEntity.ok(saveUser(user));
         }
         return ResponseEntity.badRequest().build();
+    }
+
+    public User saveUser(User loginUser) {
+        User cosa = repository.findUserByEmail(loginUser.getEmail());
+        cosa.setToken(JWTUtil.generateToken(loginUser.getEmail()));
+        return repository.save(cosa);
     }
 
     // Lista todos los usuarios existentes
