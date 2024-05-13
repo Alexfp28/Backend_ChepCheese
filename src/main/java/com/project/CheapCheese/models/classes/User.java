@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.math.BigInteger;
 
 @Data
-@Document(collection = "usuarios")
+@Document(collection = "users")
 public class User {
 
     @Id
