@@ -13,7 +13,6 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.WebUtils;
 
-import javax.crypto.SecretKey;
 import java.security.Key;
 import java.util.Date;
 
@@ -44,14 +43,12 @@ public class JwtUtils {
     // Genero un token en las cookies diciendole el path, lo máximo que puede ocupar el token y si solo puede ser en http.
     public ResponseCookie generateJwtCookie(UserDetailsImpl userPrincipal) {
         String jwt = generateTokenFromUsername(userPrincipal.getUsername());
-        ResponseCookie cookie = ResponseCookie.from(jwtCookie, jwt).path("/api").maxAge(24 * 60 * 60).httpOnly(true).build();
-        return cookie;
+        return ResponseCookie.from(jwtCookie, jwt).path("/api").maxAge(24 * 60 * 60).httpOnly(true).build();
     }
 
     // Limpio el token de las cookies, al mencionar antes el path lo nombro de nuevo para poder reconocerlo.
     public ResponseCookie getCleanJwtCookie() {
-        ResponseCookie cookie = ResponseCookie.from(jwtCookie, null).path("/api").build();
-        return cookie;
+        return ResponseCookie.from(jwtCookie, null).path("/api").build();
     }
 
     // Recibo el usuario concurrente mediante el token que se le ha asignado.
