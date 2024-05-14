@@ -25,10 +25,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecurityConfig {
 
     @Autowired
-    UserDetailsServiceImpl userDetailService;
+    protected UserDetailsServiceImpl userDetailService;
 
     @Autowired
-    private AuthEntryPointJwt unauthorizedHandler;
+    protected AuthEntryPointJwt unauthorizedHandler;
 
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
@@ -60,6 +60,7 @@ public class WebSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    // Le digo a la aplicación que endpoints son capaces de entrar cualquier usuario y que endpoints están restringidos.
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())

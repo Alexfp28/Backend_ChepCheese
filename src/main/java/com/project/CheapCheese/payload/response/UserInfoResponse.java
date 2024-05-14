@@ -5,10 +5,6 @@ import java.util.List;
 
 public class UserInfoResponse {
 
-    private String token;
-
-    private String type;
-
     private BigInteger id;
 
     private String username;
@@ -24,22 +20,6 @@ public class UserInfoResponse {
         this.username = username;
         this.email = email;
         this.role = role;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public BigInteger getId() {
