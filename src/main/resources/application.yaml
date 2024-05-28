@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: CheapCheese
+
+  data:
+    mongodb:
+      authentication-database: admin
+      database: CheapCheese
+      username: mongo
+      password: SaJCVRqBcWCsUblfzqqjZuQSzbLVQQJF
+      port: 52056
+      host: monorail.proxy.rlwy.net
+      # uri: mongodb://mongo:SaJCVRqBcWCsUblfzqqjZuQSzbLVQQJF@monorail.proxy.rlwy.net:52056
+
+  security:
+    user:
+      name: admin
+      password: admin
+
+cheapcheese:
+  app:
+    jwtCookieName: cheapCheese
+    jwtSecret: PNijKumE84KfExpQQQcDfzKRKdqR7mXro0wPzwYBOtY=
+    jwtExpirationMs: 120000
