@@ -6,11 +6,10 @@ spring:
     mongodb:
       authentication-database: admin
       database: CheapCheese
-      username: mongo
-      password: SaJCVRqBcWCsUblfzqqjZuQSzbLVQQJF
-      port: 52056
-      host: monorail.proxy.rlwy.net
-      # uri: mongodb://mongo:SaJCVRqBcWCsUblfzqqjZuQSzbLVQQJF@monorail.proxy.rlwy.net:52056
+      username: rootuser
+      password: rootpass
+      port: 27017
+      host: localhost
 
   security:
     user:
