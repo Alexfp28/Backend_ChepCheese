@@ -15,7 +15,7 @@ public class Supermarket {
     private String imagen;
     private String descripcion;
 
-    public Supermarket( String nombre, String imagen, String descripcion) {
+    public Supermarket(String nombre, String imagen, String descripcion) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.descripcion = descripcion;
