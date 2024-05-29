@@ -6,8 +6,8 @@ spring:
     mongodb:
       authentication-database: admin
       database: CheapCheese
-      username: rootuser
-      password: rootpass
+      username: admin
+      password: adminpass
       port: 27017
       host: localhost
 
