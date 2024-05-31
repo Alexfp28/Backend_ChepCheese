@@ -8,8 +8,6 @@ import java.util.Optional;
 public interface UserRepository extends MongoRepository<User, String> {
     User findUserByIdUser(int idUser);
 
-    User findUserByEmail(String email);
-
     Optional<User> findByUsername(String username);
 
     Boolean existsByUsername(String username);
@@ -17,5 +15,7 @@ public interface UserRepository extends MongoRepository<User, String> {
     Boolean existsByEmail(String email);
 
     User deleteUserByIdUser(int idUser);
+
+    User deleteUserByEmail(String email);
 
 }

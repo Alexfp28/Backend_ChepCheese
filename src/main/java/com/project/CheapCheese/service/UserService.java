@@ -118,7 +118,7 @@ public class UserService {
     }
 
     public ResponseEntity<?> deleteUser(User user) {
-        return ResponseEntity.ok(userRepository.deleteUserByIdUser(user.getIdUser()));
+        return ResponseEntity.ok(userRepository.deleteUserByEmail(user.getEmail()));
     }
 
     public ResponseEntity<?> getCurrentUser() {
