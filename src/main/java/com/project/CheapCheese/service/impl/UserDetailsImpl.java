@@ -6,17 +6,21 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.bson.types.ObjectId;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.CheapCheese.model.User;
 
-
+@Getter
+@Setter
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
 
-    private BigInteger id;
+    private int id;
 
     private String username;
 
@@ -27,7 +31,7 @@ public class UserDetailsImpl implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(BigInteger id, String username, String email, String password,
+    public UserDetailsImpl(int id, String username, String email, String password,
                            Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
@@ -42,7 +46,7 @@ public class UserDetailsImpl implements UserDetails {
                 .collect(Collectors.toList());
 
         return new UserDetailsImpl(
-                user.getId(),
+                user.getIdUser(),
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
@@ -52,14 +56,6 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
-    }
-
-    public BigInteger getId() {
-        return id;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     @Override

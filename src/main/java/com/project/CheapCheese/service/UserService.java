@@ -24,9 +24,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -103,5 +101,27 @@ public class UserService {
         ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
                 .body(new MessageResponse("Has cerrado sesión!"));
+    }
+
+    public ResponseEntity<?> getAllUsers() {
+        return ResponseEntity.ok(userRepository.findAll());
+    }
+
+    public ResponseEntity<?> saveUser(User userDetails) {
+
+        User user = userRepository.findUserByIdUser(userDetails.getIdUser());
+        if (user == null)
+            return ResponseEntity.ok(userRepository.save(userDetails));
+
+        user.setPassword(CheapCheese.encoder.encode(userDetails.getPassword()));
+        return ResponseEntity.ok(userRepository.save(user));
+    }
+
+    public ResponseEntity<?> deleteUser(User user) {
+        return ResponseEntity.ok(userRepository.deleteUserByIdUser(user.getIdUser()));
+    }
+
+    public ResponseEntity<?> getCurrentUser() {
+        return ResponseEntity.ok(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
     }
 }

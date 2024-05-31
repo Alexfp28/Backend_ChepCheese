@@ -7,6 +7,7 @@ import com.project.CheapCheese.payload.request.RegisterRequest;
 import com.project.CheapCheese.repository.RoleRepository;
 import com.project.CheapCheese.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +26,7 @@ public class CheapCheese {
     @Autowired
     protected RoleRepository roleRepository;
 
-    @Autowired
-    protected PasswordEncoder encoder;
+    public static PasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public CheapCheese() {
         singleton = this;
@@ -46,9 +46,11 @@ public class CheapCheese {
 
     public static User createUser(RegisterRequest registerRequest) {
         // Crea una nueva cuenta de usuario.
-        return new User(registerRequest.getUsername(),
+        return new User(
+                registerRequest.getIdUser(),
+                registerRequest.getUsername(),
                 registerRequest.getEmail(),
-                singleton.encoder.encode(registerRequest.getPassword()));
+                encoder.encode(registerRequest.getPassword()));
     }
 
     public static Set<Role> asignRoles(Set<String> strRoles) {

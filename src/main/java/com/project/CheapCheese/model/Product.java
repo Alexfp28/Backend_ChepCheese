@@ -14,13 +14,15 @@ public class Product {
     @Id
     private BigInteger _id;
 
+    private int id;
     private String nombre;
     private String imagen;
     private double precio;
     private String tipo;
     private String tienda;
 
-    public Product(String nombre, String imagen, double precio, String tipo, String tienda) {
+    public Product(int id, String nombre, String imagen, double precio, String tipo, String tienda) {
+        this.id = id;
         this.nombre = nombre;
         this.imagen = imagen;
         this.precio = precio;

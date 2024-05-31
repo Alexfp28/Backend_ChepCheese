@@ -1,5 +1,6 @@
 package com.project.CheapCheese.controller;
 
+import com.project.CheapCheese.model.User;
 import com.project.CheapCheese.payload.request.LoginRequest;
 import com.project.CheapCheese.payload.request.RegisterRequest;
 import com.project.CheapCheese.service.UserService;
@@ -8,26 +9,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/api/v1/users/")
 public class UsersController {
 
     @Autowired
     UserService userService;
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest) {
-        return this.userService.login(loginRequest);
+    @GetMapping("/getAllUsers")
+    public ResponseEntity<?> getAllUsers() {
+        return this.userService.getAllUsers();
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest signUpRequest) {
-        return this.userService.register(signUpRequest);
+    @PostMapping("/saveUser")
+    public ResponseEntity<?> saveUser(@RequestBody User user) {
+        return this.userService.saveUser(user);
     }
 
-    @PostMapping("/logout")
-    public ResponseEntity<?> logout() {
-        return this.userService.logout();
+    @PostMapping("/deleteUser")
+    public ResponseEntity<?> deleteUser(@RequestBody User user) {
+        return this.userService.deleteUser(user);
     }
 }

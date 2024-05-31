@@ -3,6 +3,7 @@ package com.project.CheapCheese.model;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -24,6 +25,8 @@ public class User {
     @Id
     private BigInteger _id;
 
+    private int idUser;
+
     @NotBlank
     @Size(max = 20)
     private String username;
@@ -40,7 +43,10 @@ public class User {
     @DBRef
     private Set<Role> roles = new HashSet<>();
 
-    public User(String username, String email, String password) {
+    public User() {}
+
+    public User(int idUser, String username, String email, String password) {
+        this.idUser = idUser;
         this.username = username;
         this.email = email;
         this.password = password;

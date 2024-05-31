@@ -13,7 +13,7 @@ public class SupermarketService {
     @Autowired
     public SupermarketRepository repository;
 
-    public void guardarSupermarket(Supermarket supermarket) {
+    public void saveSupermarket(Supermarket supermarket) {
         repository.save(supermarket);
     }
 

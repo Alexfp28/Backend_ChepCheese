@@ -6,10 +6,8 @@ import com.project.CheapCheese.model.Product;
 import com.project.CheapCheese.service.ProductService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -59,5 +57,15 @@ public class ProductsController {
         List<Product> listOfProducts = service.AllProducts();
         EspecificExcelGenerator generator = new EspecificExcelGenerator(listOfProducts);
         generator.generateExcelFile(response);
+    }
+
+    @PostMapping("/saveProduct")
+    public ResponseEntity<?> saveProduct(@RequestBody Product product) {
+        return this.service.saveProduct(product);
+    }
+
+    @PostMapping("/deleteProduct")
+    public ResponseEntity<?> deleteProduct(@RequestBody Product product) {
+        return this.service.deleteProduct(product);
     }
 }
