@@ -2,6 +2,7 @@ package com.project.CheapCheese.payload.response;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.http.ResponseCookie;
 
 import java.util.List;
 
@@ -17,13 +18,16 @@ public class UserInfoResponse {
 
     private List<String> role;
 
+    private String token;
+
     public UserInfoResponse() {}
 
-    public UserInfoResponse(int id, String username, String email, List<String> role) {
+    public UserInfoResponse(int id, String username, String email, List<String> role, String token) {
         this.idUser = id;
         this.username = username;
         this.email = email;
         this.role = role;
+        this.token = token;
     }
 
 }

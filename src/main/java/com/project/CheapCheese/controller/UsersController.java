@@ -13,7 +13,7 @@ import java.util.Map;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/api/v1/users/")
+@RequestMapping("/api/v1/users")
 public class UsersController {
 
     @Autowired
@@ -33,4 +33,5 @@ public class UsersController {
     public ResponseEntity<?> deleteUser(@RequestBody User user) {
         return this.userService.deleteUser(user);
     }
+
 }

@@ -94,7 +94,7 @@ public class UserService {
                 .body(new UserInfoResponse(userDetails.getId(),
                         userDetails.getUsername(),
                         userDetails.getEmail(),
-                        roles));
+                        roles, jwtCookie.toString()));
     }
 
     public ResponseEntity<?> logout() {
