@@ -39,7 +39,7 @@ public class EspecificExcelGenerator {
         font.setBold(true);
         font.setFontHeightInPoints((short) 16);
         style.setFont(font);
-        createCell(row, 0, "Tipo", style);
+        createCell(row, 0, "Supermercado", style);
         createCell(row, 1, "Precio Máximo", style);
     }
 
@@ -67,24 +67,24 @@ public class EspecificExcelGenerator {
     }
 
     private void writeData() {
-        var maxPricesByType = new HashMap<String, Double>();
+        var maxPricesByMarket = new HashMap<String, Double>();
 
         // Calcular el precio máximo para cada tipo
         for (Product product : productList) {
-            String type = product.getTipo();
+            String supermarket = product.getTienda();
             double price = product.getPrecio();
-            if (!maxPricesByType.containsKey(type) || price > maxPricesByType.get(type)) {
-                maxPricesByType.put(type, price);
+            if (!maxPricesByMarket.containsKey(supermarket) || price > maxPricesByMarket.get(supermarket)) {
+                maxPricesByMarket.put(supermarket, price);
             }
         }
 
         // Escribir los datos en la hoja de cálculo
-        Set<String> types = maxPricesByType.keySet();
+        Set<String> supermarkets = maxPricesByMarket.keySet();
         int rowNumber = 1;
-        for (String type : types) {
+        for (String supermarket : supermarkets) {
             Row row = sheet.createRow(rowNumber++);
-            createCell(row, 0, type, null);
-            createCell(row, 1, maxPricesByType.get(type), null);
+            createCell(row, 0, supermarket, null);
+            createCell(row, 1, maxPricesByMarket.get(supermarket), null);
         }
     }
 
@@ -99,7 +99,7 @@ public class EspecificExcelGenerator {
 
         // Crear eje de categoría (X)
         XDDFCategoryAxis bottomAxis = chart.createCategoryAxis(AxisPosition.BOTTOM);
-        bottomAxis.setTitle("Tipo");
+        bottomAxis.setTitle("Supermercado");
 
         // Crear eje de valores (Y)
         XDDFValueAxis leftAxis = chart.createValueAxis(AxisPosition.LEFT);

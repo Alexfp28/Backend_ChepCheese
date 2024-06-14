@@ -28,7 +28,7 @@ public class GeneralExcelGenerator {
     }
 
     private void writeHeader() {
-        sheet = workbook.createSheet("Products");
+        sheet = workbook.createSheet("Productos");
 
         var row = sheet.createRow(0);
         var style = workbook.createCellStyle();
@@ -39,9 +39,9 @@ public class GeneralExcelGenerator {
         style.setFont(font);
         createCell(row, 0, "ID", style);
         createCell(row, 1, "Nombre", style);
-        createCell(row, 3, "Precio", style);
-        createCell(row, 4, "Tipo", style);
-        createCell(row, 5, "Tienda", style);
+        createCell(row, 2, "Precio", style);
+        createCell(row, 3, "Tipo", style);
+        createCell(row, 4, "Tienda", style);
     }
 
     private void createCell(Row row, int columnCount, Object valueOfCell, CellStyle style) {
