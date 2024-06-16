@@ -18,13 +18,13 @@ import org.apache.poi.xddf.usermodel.chart.AxisPosition;
 import org.apache.poi.xssf.usermodel.*;
 
 
-public class EspecificExcelGenerator {
+public class SupermarketExcelGenerator {
 
     private List<Product> productList;
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
 
-    public EspecificExcelGenerator(List<Product> productList) {
+    public SupermarketExcelGenerator(List<Product> productList) {
         this.productList = productList;
         workbook = new XSSFWorkbook();
     }
